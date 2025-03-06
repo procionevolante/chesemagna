@@ -23,9 +23,9 @@ fi
 # che giorno e' oggi?
 
 # 1 = Lunedi', 5 = Venerdi'
-giorno="$(date '+%u')"
-sett="$(date '+%W')"
-rifSett="$(date '+%W' -d "$rifGiorno")"
+giorno="$(date '+%-u')"
+sett="$(date '+%-W')"
+rifSett="$(date '+%-W' -d "$rifGiorno")"
 
 # settimane passate dalla settimana di riferimento
 settMenu=$((($sett - $rifSett) % $durataCiclo ))
