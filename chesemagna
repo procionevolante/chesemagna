@@ -20,11 +20,17 @@ else
     exit 1
 fi
 
-# che giorno e' oggi?
+if [ -z "$1" ]; then
+    # che giorno e' oggi?
+    data=$(date '+%F')
+else
+    # usa $1 come data da analizzare
+    data=$(date '+%F' -d "$1")
+fi
 
 # 1 = Lunedi', 5 = Venerdi'
-giorno="$(date '+%-u')"
-sett="$(date '+%-W')"
+giorno="$(date '+%-u' -d "$data")"
+sett="$(date '+%-W' -d "$data")"
 rifSett="$(date '+%-W' -d "$rifGiorno")"
 
 # settimane passate dalla settimana di riferimento
@@ -39,6 +45,7 @@ menu="$(tail -n +$(($giorno + 1)) -- "$fileSett" | head -n 1)"
 
 numCampi="$(($(head -n 1 "$fileSett" | tr -cd ';' | wc -c) + 1))"
 
+echo " --- GIORNO $(date '+%F' -d "$data") ---"
 echo " --- SETTIMANA $settMenu ---"
 for idx in $(seq "$numCampi"); do
     nomeCampo="$(echo "$intestaz" | cut -d ';' -f $idx)"
