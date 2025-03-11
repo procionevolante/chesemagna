@@ -4,6 +4,7 @@ import csv
 import time
 from os.path import realpath
 from pathlib import Path
+from sys import argv
 
 # config
 dateFormat = '%Y-%m-%d' # YYYY-MM-DD ISO date format
@@ -45,9 +46,12 @@ def printMenu(header, values):
             print(' - ' + '\n - '.join(values[i]))
 
 # Analyze current day
-now = time.localtime()
-weekday = int(time.strftime('%u', now)) # Monday = 1. Sunday = 7
-weekNow = getWeekNum(now)
+if len(argv) <= 1:
+    date = time.localtime()
+else:
+    date = time.strptime(argv[1], dateFormat)
+weekday = int(time.strftime('%u', date)) # Monday = 1. Sunday = 7
+weekNow = getWeekNum(date)
 
 # calculate current menu week
 weekRef = getWeekNum(dayRef)
@@ -55,7 +59,7 @@ weekRef = getWeekNum(dayRef)
 # difference is base 0 but menu week is base 1
 menuWeek = (weekNow - weekRef + weekMenuRef - 1) % cycleLen + 1
 
-print(f'---- GIORNO {time.strftime(dateFormat, now)} ----')
+print(f'---- GIORNO {time.strftime(dateFormat, date)} ----')
 print(f'---- SETTIMANA {menuWeek}/{cycleLen} ----')
 
 menuFile = findMenuFile(menuWeek)
