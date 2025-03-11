@@ -33,8 +33,7 @@ def printMenu(header, values):
             print(' ' + values[i][0])
         else:
             print()
-            for plate in values[i]:
-                print(' - ' + plate)
+            print(' - ' + '\n - '.join(values[i]))
 
 # Analyze current day
 now = time.localtime()
