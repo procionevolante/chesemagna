@@ -2,6 +2,8 @@
 
 import csv
 import time
+from os.path import realpath
+from pathlib import Path
 
 # config
 dateFormat = '%Y-%m-%d' # YYYY-MM-DD ISO date format
@@ -20,8 +22,12 @@ def getWeekNum(date):
     return int(time.strftime('%-W', date))
 
 def findMenuFile(menuWeek):
-    # TODO implement
-    return f'./chesemagna-data/sett{menuWeek}.csv'
+    weekFile = f'sett{menuWeek}.csv'
+    for searchIn in ['.', realpath(__file__), f'{str(Path.home())}/docs' ]:
+        fullPath = Path(f'{searchIn}/chesemagna-data/{weekFile}')
+        if fullPath.exists() and fullPath.is_file():
+            return str(fullPath)
+    raise FileNotFoundError(f'Could not find {weekFile}')
 
 def printMenu(header, values):
     for i in range(len(header)):
