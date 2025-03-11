@@ -19,7 +19,10 @@ def getWeekNum(date):
     @return week number: ranges from 0 to 53.
             1st Monday of the year is the 1st day with week numb. = 1
     '''
-    return int(time.strftime('%-W', date))
+    rv = time.strftime('%W', date)
+    if rv[0:1] == '0':
+        rv = rv[1:]
+    return int(rv)
 
 def findMenuFile(menuWeek):
     weekFile = f'sett{menuWeek}.csv'
