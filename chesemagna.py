@@ -21,9 +21,7 @@ def getWeekNum(date):
             1st Monday of the year is the 1st day with week numb. = 1
     '''
     rv = time.strftime('%W', date)
-    if rv[0:1] == '0':
-        rv = rv[1:]
-    return int(rv)
+    return int(rv) # int() assumes base 10 and discards leading 0s
 
 def findMenuFile(menuWeek):
     weekFile = f'sett{menuWeek}.csv'
