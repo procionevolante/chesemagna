@@ -2,7 +2,7 @@
 
 import csv
 import time
-from os.path import realpath
+from os.path import realpath, dirname
 from pathlib import Path
 from sys import argv
 
@@ -25,7 +25,7 @@ def getWeekNum(date):
 
 def findMenuFile(menuWeek):
     weekFile = f'sett{menuWeek}.csv'
-    for searchIn in ['.', realpath(__file__), f'{str(Path.home())}/docs' ]:
+    for searchIn in ['.', dirname(realpath(__file__)), f'{str(Path.home())}/docs' ]:
         fullPath = Path(f'{searchIn}/chesemagna-data/{weekFile}')
         if fullPath.exists() and fullPath.is_file():
             return str(fullPath)
