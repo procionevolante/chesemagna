@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # nota: deve essere dell'anno corrente
-rifGiorno='2025-10-06'
+rifGiorno='2026-01-07'
 # in rifGiorno che settimana del menu era?
-rifSettMenu=1
+rifSettMenu=4
 # durata ciclo del menu (in settimane)
 durataCiclo=5
 

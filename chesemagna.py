@@ -8,8 +8,8 @@ from sys import argv
 
 # config
 dateFormat = '%Y-%m-%d' # YYYY-MM-DD ISO date format
-dayRef = time.strptime('2025-10-06', dateFormat)
-weekMenuRef = 1 # menu week @ dayRef
+dayRef = time.strptime('2026-01-07', dateFormat)
+weekMenuRef = 4 # menu week @ dayRef
 cycleLen = 5
 # ------
 
